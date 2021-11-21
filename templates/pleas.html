@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  {% for x in pleas %}
+    <div class="blog-card">
+        <div class="meta">
+          <div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"></div>
+          <ul class="details">
+            <li class="author">{{x.full_name}}</li>
+            <li class="date">Born {{x.birth_date}} of {{x.birth_month}} in {{x.birth_year}}</li>
+            
+          </ul>
+        </div>
+        <div class="description">
+          <h1>{{x.full_name}}</h1>
+          <h2> Gender: {{x.gender}}</h2>
+          <h4> Requirment: {{x.requirement}}</h4>
+          <p> {{x.message}}</p>
+          <button class="card-xyz"><a class="donate-btn" href="donate.html">Donate</a></button>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}
