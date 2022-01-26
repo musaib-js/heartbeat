@@ -3,11 +3,71 @@
     <div>
         <img class="illustration" src="/static/images/illustration2.svg" alt="">
         <h1 class="heading">
-            Donate us and <br> Save lives
+            Donate an organ and <br> Save lives
         </h1>
-        <p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea et quo officia omnis maxime nemo, numquam corrupti animi quaerat minima?</p>
+        <p class="para">Fill the form below to donate an organ</p>
     </div>
-    <button class="btn">
-        Donate Us
+    <button class="btn"><a href = "#recepient-form">
+        Donate Us</a>
     </button>
+    
+        </div>
+    </div>
+    <div id="recepient-form" class="container">
+        <form action = "/donate/" method = "POST">
+          <div class="row">
+          {% for x in messages %}
+          <h3>{{x.message}}</h3>
+          {% endfor %}
+            <h4>Donate an organ</h4>
+            <div class="input-group ">
+              <input name = "fullname" type="text" placeholder="Full Name"required/>
+              <div class="input-icon"></div>
+            </div>
+            <div class="input-group ">
+              <input name= "email" type="email" placeholder="Email Adress"required/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+            <div class="input-group">
+              <input name = "contact" type="tel" placeholder="Contact No."required/>
+              <div class="input-icon"><i class="fa fa-key"></i></div>
+            </div>
+            <div class="input-group">
+            <input name = "organ" type="text" placeholder="Organ To Donate"required/>
+            <div class="input-icon"><i class="fa fa-key"></i></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-half">
+              <h4>Date of Birth</h4>
+              <div class="input-group">
+                <div class="col-third">
+                  <input name = "birthdate" type="text" placeholder="DD" required/>
+                </div>
+                <div class="col-third">
+                  <input name = "birthmonth" type="text" placeholder="MM" required/>
+                </div>
+                <div class="col-third">
+                  <input name = "birthyear" type="text" placeholder="YYYY" required/>
+                </div>
+              </div>
+            </div>
+            <div class="col-half">
+              <h4>Gender</h4>
+              <div class="input-group">
+                <input  id="gender-male" type="radio" name="gender" value="male" required/>
+                <label for="gender-male">Male</label>
+                <input id="gender-female" type="radio" name="gender" value="female" required/>
+                <label for="gender-female">Female</label>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <input name = "message" type="text" placeholder="Write a message" required/>
+            </div>
+          <button type="submit" class="form-submit">Submit</button>
+          {% csrf_token %}
+        </form>
+        
+
 {% endblock  %}

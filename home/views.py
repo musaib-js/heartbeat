@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import donation_plea
+from .models import donation_plea, donation
 from django.contrib import messages
 
 
@@ -28,6 +28,21 @@ def donationplea(request):
     return render (request, 'recepient.html')
 
 def donate(request):
+    if request.method == "POST":
+        fullname = request.POST["fullname"]
+        email = request.POST["email"]
+        contact = request.POST["contact"]
+        organ = request.POST["organ"]
+        birthdate = request.POST["birthdate"]
+        birthmonth = request.POST["birthmonth"]
+        birthyear = request.POST["birthyear"]
+        gender = request.POST["gender"]
+        message = request.POST["message"]
+
+        newdonation = donation(full_name = fullname, email = email, contact = contact, organ = organ, birth_date = birthdate, birth_month = birthmonth, birth_year = birthyear, gender= gender, message = message)
+        newdonation.save()
+        messages.success(request,  "Your Donation Request Has Been Submitted")
+
     return render (request, 'donate.html')
 
 def cards(request):
